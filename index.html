@@ -1,103 +1,473 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Browser Comparison</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse; 
-            margin-top: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            caption-side: bottom;
-            border: 1px solid #000; 
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TechZone Electronics Online Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        caption {
-            margin-top: 15px;
-            font-style: italic;
-            color: #666;
-            text-align: center;
-        }
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-            border: 1px solid #000; 
-  }
+    :root {
+      --bg:       #0a0e1a;
+      --surface:  #111827;
+      --card:     #1a2235;
+      --border:   #1f2d45;
+      --accent:   #00c6ff;
+      --accent2:  #f97316;
+      --text:     #e8edf5;
+      --muted:    #7a8ba3;
+      --radius:   12px;
+    }
 
-      th {
-    background-color: transparent; 
-    color: black;                  
-    font-weight: bold;            
-   }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        tr:hover {
-            background-color: #e6f7e6;
-        }
-        .browser-icon {
-            width: 32px;
-            height: 32px;
-            vertical-align: middle;
-            margin-right: 10px;
-        }
-    </style>
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, #0d1b2e 0%, #0a0e1a 60%);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5%;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
+    .logo span { color: var(--accent); }
+
+    /* ── NAV ── */
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 6px;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 6px 14px;
+      border-radius: 20px;
+      transition: all 0.2s;
+    }
+    nav ul li a:hover {
+      color: var(--accent);
+      background: rgba(0,198,255,0.08);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 90px 5% 80px;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0,198,255,0.08) 0%, transparent 70%),
+        var(--bg);
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 18px;
+      letter-spacing: -1px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    .hero p {
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 32px;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(0,198,255,0.12);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(0,198,255,0.25);
+      margin-bottom: 22px;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    section { padding: 70px 5%; }
+    section:nth-child(even) { background: var(--surface); }
+
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700;
+      margin-bottom: 40px;
+      letter-spacing: -0.5px;
+    }
+
+    /* ── PRODUCTS TABLE ── */
+    #products { max-width: 1000px; margin: 0 auto; }
+    #products section { padding: 70px 0; }
+
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.93rem;
+    }
+    thead tr {
+      background: linear-gradient(90deg, #0d1b2e, #111e33);
+    }
+    thead th {
+      padding: 16px 20px;
+      text-align: left;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+    }
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(0,198,255,0.04); }
+    tbody td {
+      padding: 16px 20px;
+      color: var(--text);
+    }
+    .pid {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+    .price {
+      font-weight: 600;
+      color: var(--accent2);
+    }
+    .cat-badge {
+      display: inline-block;
+      background: rgba(0,198,255,0.08);
+      color: var(--accent);
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 20px;
+      border: 1px solid rgba(0,198,255,0.15);
+    }
+
+    /* ── ORDER FORM ── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 820px;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 7px; }
+    .form-group.full { grid-column: 1 / -1; }
+
+    label {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.3px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    select,
+    textarea {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 11px 14px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.93rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      width: 100%;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0,198,255,0.1);
+    }
+    select option { background: var(--card); }
+    textarea { resize: vertical; min-height: 110px; }
+
+    /* Radio buttons */
+    .radio-group {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      padding: 10px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: all 0.2s;
+      user-select: none;
+    }
+    .radio-option:has(input:checked) {
+      border-color: var(--accent);
+      background: rgba(0,198,255,0.07);
+      color: var(--accent);
+    }
+    .radio-option input[type="radio"] {
+      accent-color: var(--accent);
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Submit button */
+    .btn-submit {
+      margin-top: 8px;
+      padding: 14px 36px;
+      background: var(--accent);
+      color: #0a0e1a;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-submit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(0,198,255,0.3);
+    }
+    .btn-submit:active { transform: translateY(0); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #070b14;
+      border-top: 1px solid var(--border);
+      padding: 40px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+    .footer-logo span { color: var(--accent); }
+    .footer-info { text-align: right; }
+    .footer-info a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .footer-info a:hover { text-decoration: underline; }
+    .footer-info p { color: var(--muted); font-size: 0.82rem; margin-top: 4px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 650px) {
+      .header-inner { flex-direction: column; height: auto; padding: 16px 0; gap: 10px; }
+      nav ul { flex-wrap: wrap; justify-content: center; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-group.full { grid-column: 1; }
+      footer { flex-direction: column; text-align: center; }
+      .footer-info { text-align: center; }
+    }
+  </style>
 </head>
 <body>
-    <h1>Web Browser Comparison</h1>
-    
+
+<!-- ═══ HEADER ═══ -->
+<header>
+  <div class="header-inner">
+    <div class="logo">Tech<span>Zone</span> Electronics</div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#order">Order Form</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══ HERO / HOME ═══ -->
+<section id="home" class="hero">
+  <div class="badge">&#9679; Now Open Online</div>
+  <h1>Your Trusted Source for<br/><em>Quality Electronics</em></h1>
+  <p>Browse our curated selection of laptops, smartphones, accessories and storage — all at competitive Kenyan prices.</p>
+</section>
+
+<!-- ═══ PRODUCTS ═══ -->
+<section id="products">
+  <div class="section-label">Our Catalogue</div>
+  <div class="section-title">Featured Products</div>
+
+  <div class="table-wrap">
     <table>
-        <caption>Comparison of popular web browsers and their AI capabilities </caption>
-        <thead>
-            <tr>
-                <th>Browser Icon</th>
-                <th>Web Browser</th>
-                <th>Default Search Engine</th>
-                <th>AI Tools</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Chrome_icon_%28September_2014%29.svg" alt="Chrome" class="browser-icon"></td>
-                <td>Google Chrome</td>
-                <td>Google Search</td>
-                <td>Google Gemini, Google AI Studio</td>
-            </tr>
-            <tr>
-                <td><img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Microsoft-Edge-Logo.svg" alt="Edge" class="browser-icon"></td>
-                <td>Microsoft Edge</td>
-                <td>Bing</td>
-                <td>Copilot, Microsoft Designer</td>
-            </tr>
-            <tr>
-                <td><img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg" alt="Firefox" class="browser-icon"></td>
-                <td>Mozilla Firefox</td>
-                <td>Google Search</td>
-                <td>Firefox Translations, Fakespot</td>
-            </tr>
-            <tr>
-                <td><img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Safari_browser_logo.svg" alt="Safari" class="browser-icon"></td>
-                <td>Apple Safari</td>
-                <td>Google Search</td>
-                <td>Apple Intelligence (upcoming), Siri</td>
-            </tr>
-            <tr>
-                <td><img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Opera_2015_icon.svg" alt="Opera" class="browser-icon"></td>
-                <td>Opera</td>
-                <td>Google Search</td>
-                <td>AI Prompts, Aria (built-in AI assistant)</td>
-            </tr>
-        </body>
+      <thead>
+        <tr>
+          <th>Product ID</th>
+          <th>Product Name</th>
+          <th>Category</th>
+          <th>Price (Ksh)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="pid">P001</span></td>
+          <td>Laptop</td>
+          <td><span class="cat-badge">Computers</span></td>
+          <td><span class="price">65,000</span></td>
+        </tr>
+        <tr>
+          <td><span class="pid">P002</span></td>
+          <td>Smartphone</td>
+          <td><span class="cat-badge">Mobile Devices</span></td>
+          <td><span class="price">32,000</span></td>
+        </tr>
+        <tr>
+          <td><span class="pid">P003</span></td>
+          <td>Wireless Mouse</td>
+          <td><span class="cat-badge">Accessories</span></td>
+          <td><span class="price">1,500</span></td>
+        </tr>
+        <tr>
+          <td><span class="pid">P004</span></td>
+          <td>External Hard Drive</td>
+          <td><span class="cat-badge">Storage</span></td>
+          <td><span class="price">8,000</span></td>
+        </tr>
+      </tbody>
     </table>
+  </div>
+</section>
+
+<!-- ═══ ORDER FORM ═══ -->
+<section id="order">
+  <div class="section-label">Place an Order</div>
+  <div class="section-title">Customer Order Form</div>
+
+  <form action="#" method="post">
+    <div class="form-grid">
+
+      <!-- Customer Name -->
+      <div class="form-group">
+        <label for="cust-name">Customer Name</label>
+        <input type="text" id="cust-name" name="customer_name" placeholder="e.g. Jane Mwangi" required />
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required />
+      </div>
+
+      <!-- Product -->
+      <div class="form-group">
+        <label for="product">Select Product</label>
+        <select id="product" name="product" required>
+          <option value="" disabled selected>-- Choose a product --</option>
+          <option value="P001">P001 – Laptop (Ksh 65,000)</option>
+          <option value="P002">P002 – Smartphone (Ksh 32,000)</option>
+          <option value="P003">P003 – Wireless Mouse (Ksh 1,500)</option>
+          <option value="P004">P004 – External Hard Drive (Ksh 8,000)</option>
+        </select>
+      </div>
+
+      <!-- Quantity -->
+      <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input type="number" id="quantity" name="quantity" min="1" max="100" placeholder="1" required />
+      </div>
+
+      <!-- Delivery Address -->
+      <div class="form-group full">
+        <label for="address">Delivery Address</label>
+        <textarea id="address" name="address" placeholder="Street, Town, County..."></textarea>
+      </div>
+
+      <!-- Payment Method -->
+      <div class="form-group full">
+        <label>Payment Method</label>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="payment" value="mpesa" required />
+            M-Pesa
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="payment" value="card" />
+            Card
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="payment" value="cod" />
+            Cash on Delivery
+          </label>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="form-group full">
+        <div>
+          <button type="submit" class="btn-submit">Submit Order &rarr;</button>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer id="contact">
+  <div class="footer-logo">Tech<span>Zone</span> Electronics</div>
+  <div class="footer-info">
+    <a href="mailto:info@techzone.co.ke">info@techzone.co.ke</a>
+    <p>&copy; 2025 TechZone Electronics. All rights reserved.</p>
+  </div>
+</footer>
+
 </body>
 </html>
