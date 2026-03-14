@@ -9,14 +9,14 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #0a0e1a;
-      --surface:  #111827;
-      --card:     #1a2235;
-      --border:   #1f2d45;
-      --accent:   #00c6ff;
+      --bg:       #0d0a1a;
+      --surface:  #130f22;
+      --card:     #1c1630;
+      --border:   #2a1f45;
+      --accent:   #a78bfa;
       --accent2:  #f97316;
       --text:     #e8edf5;
-      --muted:    #7a8ba3;
+      --muted:    #7a6fa3;
       --radius:   12px;
     }
 
@@ -31,7 +31,7 @@
 
     /* ── HEADER ── */
     header {
-      background: linear-gradient(135deg, #0d1b2e 0%, #0a0e1a 60%);
+      background: linear-gradient(135deg, #110d24 0%, #0d0a1a 60%);
       border-bottom: 1px solid var(--border);
       padding: 0 5%;
       position: sticky;
@@ -71,7 +71,7 @@
     }
     nav ul li a:hover {
       color: var(--accent);
-      background: rgba(0,198,255,0.08);
+      background: rgba(167,139,250,0.08);
     }
 
     /* ── HERO ── */
@@ -79,7 +79,7 @@
       text-align: center;
       padding: 90px 5% 80px;
       background:
-        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0,198,255,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(167,139,250,0.1) 0%, transparent 70%),
         var(--bg);
     }
     .hero h1 {
@@ -101,7 +101,7 @@
     }
     .badge {
       display: inline-block;
-      background: rgba(0,198,255,0.12);
+      background: rgba(167,139,250,0.12);
       color: var(--accent);
       font-size: 0.78rem;
       font-weight: 600;
@@ -109,7 +109,7 @@
       text-transform: uppercase;
       padding: 5px 14px;
       border-radius: 20px;
-      border: 1px solid rgba(0,198,255,0.25);
+      border: 1px solid rgba(167,139,250,0.25);
       margin-bottom: 22px;
     }
 
@@ -148,7 +148,7 @@
       font-size: 0.93rem;
     }
     thead tr {
-      background: linear-gradient(90deg, #0d1b2e, #111e33);
+      background: linear-gradient(90deg, #110d24, #1a1335);
     }
     thead th {
       padding: 16px 20px;
@@ -166,7 +166,7 @@
       transition: background 0.15s;
     }
     tbody tr:last-child { border-bottom: none; }
-    tbody tr:hover { background: rgba(0,198,255,0.04); }
+    tbody tr:hover { background: rgba(167,139,250,0.04); }
     tbody td {
       padding: 16px 20px;
       color: var(--text);
@@ -183,12 +183,12 @@
     }
     .cat-badge {
       display: inline-block;
-      background: rgba(0,198,255,0.08);
+      background: rgba(167,139,250,0.08);
       color: var(--accent);
       font-size: 0.75rem;
       padding: 3px 10px;
       border-radius: 20px;
-      border: 1px solid rgba(0,198,255,0.15);
+      border: 1px solid rgba(167,139,250,0.15);
     }
 
     /* ── ORDER FORM ── */
@@ -225,7 +225,7 @@
     }
     input:focus, select:focus, textarea:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(0,198,255,0.1);
+      box-shadow: 0 0 0 3px rgba(167,139,250,0.1);
     }
     select option { background: var(--card); }
     textarea { resize: vertical; min-height: 110px; }
@@ -249,7 +249,7 @@
     }
     .radio-option:has(input:checked) {
       border-color: var(--accent);
-      background: rgba(0,198,255,0.07);
+      background: rgba(167,139,250,0.07);
       color: var(--accent);
     }
     .radio-option input[type="radio"] {
@@ -263,7 +263,7 @@
       margin-top: 8px;
       padding: 14px 36px;
       background: var(--accent);
-      color: #0a0e1a;
+      color: #0d0a1a;
       font-family: 'Syne', sans-serif;
       font-weight: 700;
       font-size: 0.95rem;
@@ -275,13 +275,13 @@
     }
     .btn-submit:hover {
       transform: translateY(-1px);
-      box-shadow: 0 6px 24px rgba(0,198,255,0.3);
+      box-shadow: 0 6px 24px rgba(167,139,250,0.35);
     }
     .btn-submit:active { transform: translateY(0); }
 
     /* ── FOOTER ── */
     footer {
-      background: #070b14;
+      background: #080612;
       border-top: 1px solid var(--border);
       padding: 40px 5%;
       display: flex;
@@ -464,7 +464,8 @@
 <footer id="contact">
   <div class="footer-logo">Tech<span>Zone</span> Electronics</div>
   <div class="footer-info">
-    <a href="mailto:info@techzone.co.ke">info@techzone.co.ke</a>
+    <a href="mailto:mwendwamike781@gmail.com">mwendwamike781@gmail.com</a>
+    <p><a href="tel:+254719567589">0719 567 589</a></p>
     <p>&copy; 2026 TechZone Electronics. All rights reserved.</p>
   </div>
 </footer>
